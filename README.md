@@ -1,5 +1,5 @@
 # Odoo - WordPress module
-###### Version: 2025.08.01.1
+###### Version: 2025.08.01.2
 
 This module allows you to connect your Odoo instance with a WordPress site.
 
