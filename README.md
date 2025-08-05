@@ -13,6 +13,12 @@ docker compose -f ./docker-compose-odoo18.yml -p odoo18 up -d
 
 ---
 
+## Documentation
+
+All the information about the module can be found in the module's documentation: `addons/woodoo/static/description/index.html` or in the Odoo Dashboard App Information tab.
+
+---
+
 ```bash
 docker stop odoo && docker rm odoo
 

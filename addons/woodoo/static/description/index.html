@@ -1,0 +1,92 @@
+<h1>WooDoo Developer Documentation</h1>
+
+<h2>Szinkronizálandó modellek</h2>
+
+<p>Megrendelések kezelése Odoo oldalon történik, rendelés állapotot össze kell hangolni az ecommerce rendszerrel.</p>
+<p>A számlázás kizárólag Odoo oldalon történik, annak állapota kerül csak vissza a WooComm rendszerbe, hasonlóan mint a megrendelések.</p>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Adattípus</th>
+            <th>WooCommerce → Odoo</th>
+            <th>Odoo → WooCommerce</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Termékek (kép nélkül)</td>
+            <td>Nem</td>
+            <td>Igen (M)</td>
+        </tr>
+        <tr>
+            <td>Termékváltozatok (k.n.)</td>
+            <td>Nem</td>
+            <td>Igen (M)</td>
+        </tr>
+        <tr>
+            <td>Készlet</td>
+            <td>Nem</td>
+            <td>Igen (M)</td>
+        </tr>
+        <tr>
+            <td>Rendelések</td>
+            <td>Igen (M)</td>
+            <td>Nem</td>
+        </tr>
+        <tr>
+            <td>Ügyfelek</td>
+            <td>Igen</td>
+            <td>Nem</td>
+        </tr>
+        <tr>
+            <td>Számlák</td>
+            <td>Nem</td>
+            <td>Igen</td>
+        </tr>
+        <tr>
+            <td>Szállítási adatok</td>
+            <td>Igen</td>
+            <td>Nem</td>
+        </tr>
+        <tr>
+            <td>Árlista / árak</td>
+            <td>Kérdéses</td>
+            <td>Igen</td>
+        </tr>
+        <tr>
+            <td>Kuponok, kedvezmények</td>
+            <td>Nem</td>
+            <td>Nem</td>
+        </tr>
+        <tr>
+            <td>Adók</td>
+            <td>Nem</td>
+            <td>Igen</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Szinkronizáció gyakorisága</h2>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Forrás</th>
+            <th>Módszer</th>
+            <th>Időzítés</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Odoo</td>
+            <td>Push (azonnali)</td>
+            <td>eseményalapú</td>
+        </tr>
+        <tr>
+            <td>WooCommerce</td>
+            <td>Webhook vagy polling</td>
+            <td>webhook: azonnali<br>polling: 15 perc</td>
+        </tr>
+    </tbody>
+</table>
