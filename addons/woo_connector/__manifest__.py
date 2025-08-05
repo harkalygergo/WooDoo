@@ -1,7 +1,7 @@
 {
-    'name': 'Odoo-WooCommerce Connector',
-    'version': '18.0.2025.08.06',
-    'summary': 'Bi-directional sync between Odoo and WordPress WooCommerce',
+    'name': 'WooDoo',
+    'version': '18.0.2025.08.07',
+    'summary': 'WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.',
     'description': """
 WooCommerce Connector
 ======================
@@ -10,7 +10,7 @@ WooCommerce Connector
 - Sync sales orders
 - Continuous update between WooCommerce and Odoo
     """,
-    'category': 'Woo Connector',
+    'category': 'WooDoo',
     'author': 'Harkály Gergő',
     'maintainer': 'Harkály Gergő',
     'company': 'brandcom.',
@@ -18,7 +18,7 @@ WooCommerce Connector
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [
-        'views/hello_world_templates.xml',
+        'views/hello_world_template.xml',
     ],
     #'depends': [
     #    'base',

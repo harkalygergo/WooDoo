@@ -1,0 +1,47 @@
+# Define the services for our application
+services:
+  # The Odoo web service
+  web:
+    # Use the official Odoo image from Docker Hub
+    image: odoo:latest
+    # Make sure Odoo waits for the database to be ready
+    depends_on:
+      - db
+    # Expose the necessary ports
+    ports:
+      # Map the container's Odoo port to the host's port
+      - "8018:8069"
+    # Set up environment variables for database connection
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    # Define volumes to persist data and mount custom modules
+    volumes:
+      # Named volume for Odoo's data and filestore
+      - odoo-web-data:/var/lib/odoo
+      # Bind mount for custom modules:
+      # ./custom_addons is on your Ubuntu host, /mnt/extra-addons is in the container
+      - ./addons:/mnt/extra-addons
+    # Specify the command to start Odoo with our custom addons path
+    command: [
+      "--addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons",
+      "--dev=all"
+    ]
+  # The PostgreSQL database service
+  db:
+    # Use the official PostgreSQL image
+    image: postgres:15
+    # Set up environment variables for the database credentials
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    # Named volume for PostgreSQL data persistence
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+# Define the named volumes that will persist data
+volumes:
+  odoo-web-data:
+  odoo-db-data:

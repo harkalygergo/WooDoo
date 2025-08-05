@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="hello_world_templates" name="Hello Page">
+        <template id="hello_world_template" name="Hello Page">
             <div class="oe_structure">
                 <section class="container mt-5">
                     <div class="text-center">

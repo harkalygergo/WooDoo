@@ -5,8 +5,10 @@ WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooComme
 ## How to use?
 
 ```bash
-docker-compose up -d
-docker compose -p odoo up -d
+# start Odoo 12 in Docker
+docker compose -f ./docker-compose-odoo12.yml -p odoo12 up -d
+# start Odoo 14 in Docker
+docker compose -f ./docker-compose-odoo18.yml -p odoo18 up -d
 ```
 
 ---

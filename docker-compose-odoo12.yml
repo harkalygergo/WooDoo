@@ -3,14 +3,14 @@ services:
   # The Odoo web service
   web:
     # Use the official Odoo image from Docker Hub
-    image: odoo:latest
+    image: odoo:12
     # Make sure Odoo waits for the database to be ready
     depends_on:
       - db
     # Expose the necessary ports
     ports:
       # Map the container's Odoo port to the host's port
-      - "8069:8069"
+      - "8012:8069"
     # Set up environment variables for database connection
     environment:
       - HOST=db
@@ -31,7 +31,7 @@ services:
   # The PostgreSQL database service
   db:
     # Use the official PostgreSQL image
-    image: postgres:15
+    image: postgres:10
     # Set up environment variables for the database credentials
     environment:
       - POSTGRES_DB=postgres
