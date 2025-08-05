@@ -1,6 +1,6 @@
 {
     'name': 'Odoo-WooCommerce Connector',
-    'version': '18.0.2025.08.05',
+    'version': '18.0.2025.08.06',
     'summary': 'Bi-directional sync between Odoo and WordPress WooCommerce',
     'description': """
 WooCommerce Connector

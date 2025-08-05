@@ -1,6 +1,6 @@
-# Odoo - WordPress module
+# WooDoo
 
-This module allows you to connect your Odoo instance with a WordPress site.
+WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.
 
 ## How to use?
 
