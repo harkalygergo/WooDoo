@@ -1,7 +1,7 @@
 {
-    'name': 'WooCommerce Connector',
-    'version': '18.0.1.0.0',
-    'summary': 'Bi-directional sync between Odoo and WooCommerce',
+    'name': 'Odoo-WooCommerce Connector',
+    'version': '18.0.2025.08.05',
+    'summary': 'Bi-directional sync between Odoo and WordPress WooCommerce',
     'description': """
 WooCommerce Connector
 ======================
@@ -10,24 +10,32 @@ WooCommerce Connector
 - Sync sales orders
 - Continuous update between WooCommerce and Odoo
     """,
-    'category': 'Connector',
-    'author': 'Your Company',
-    'website': 'https://yourwebsite.com',
+    'category': 'Woo Connector',
+    'author': 'Harkály Gergő',
+    'maintainer': 'Harkály Gergő',
+    'company': 'brandcom.',
+    'website': 'https://www.harkalygergo.hu',
     'license': 'LGPL-3',
-    'depends': [
-        'base',
-        'sale',
-        'stock',
-        'product',
-        'website_sale',
-    ],
+    'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/woo_connector_menus.xml',
-        'views/woo_product_view.xml',
-        'views/woo_order_view.xml',
-        # Add more XML views if you have them
+        'views/hello_world_templates.xml',
     ],
+    #'depends': [
+    #    'base',
+    #    'sale',
+    #    'stock',
+    #    'product',
+    #    'website_sale',
+    #],
+    #'data': [
+        #'security/ir.model.access.csv',
+        #'views/woo_connector_menus.xml',
+        #'views/woo_product_view.xml',
+        #'views/woo_order_view.xml',
+        #'views/woo_connector_menus.xml',
+        #'views/hello_template.xml',
+        # Add more XML views if you have them
+    #],
     #'assets': {
      #   'web.assets_backend': [
      #       'woo_connector/static/src/js/woo_connector.js',

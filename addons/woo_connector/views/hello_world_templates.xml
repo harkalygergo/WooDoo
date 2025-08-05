@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <template id="hello_world_templates" name="Hello Page">
+            <div class="oe_structure">
+                <section class="container mt-5">
+                    <div class="text-center">
+                        <h1 class="display-1 text-primary">Hello, World!</h1>
+                        <p class="lead">
+                            This is a simple Odoo 18.0 custom module.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </template>
+    </data>
+</odoo>

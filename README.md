@@ -1,5 +1,4 @@
 # Odoo - WordPress module
-###### Version: 2025.08.01.2
 
 This module allows you to connect your Odoo instance with a WordPress site.
 
@@ -7,6 +6,7 @@ This module allows you to connect your Odoo instance with a WordPress site.
 
 ```bash
 docker-compose up -d
+docker compose -p odoo up -d
 ```
 
 ---
@@ -25,3 +25,14 @@ docker run -d --name odoo \
 
 docker exec -it odoo ls -la /mnt/extra-addons
 ```
+
+---
+
+## Help
+
+- https://github.com/cubells/connector-woocommerce
+- https://github.com/cubells/connector-woocommerce/tree/12.0-mig_connector_woocommerce
+
+## License
+
+Made with 💚 in Hungary by Gergő Harkály (https://www.harkalygergo.hu).
