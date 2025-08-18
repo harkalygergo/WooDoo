@@ -1,1 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_woodoo_sync_service_user,woodoo.sync.service.user,model_woodoo_sync_service,base.group_user,1,1,1,0
+access_woodoo_sync_service_manager,woodoo.sync.service.manager,model_woodoo_sync_service,base.group_system,1,1,1,1
+access_woodoo_sync_log_user,woodoo.sync.log.user,model_woodoo_sync_log,base.group_user,1,0,0,0
+access_woodoo_sync_log_manager,woodoo.sync.log.manager,model_woodoo_sync_log,base.group_system,1,1,1,1

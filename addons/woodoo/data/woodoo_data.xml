@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Default Sync Service -->
+    <record id="default_woodoo_sync_service" model="woodoo.sync.service">
+        <field name="name">Default WooCommerce Sync</field>
+        <field name="state">idle</field>
+    </record>
+
+    <!-- Scheduled Action for Auto Sync (initially inactive) -->
+    <record id="ir_cron_woodoo_auto_sync" model="ir.cron">
+        <field name="name">WooDoo: Auto Synchronization</field>
+        <field name="model_id" ref="model_woodoo_sync_service"/>
+        <field name="state">code</field>
+        <field name="code">
+# Auto sync based on configuration
+IrConfigParameter = env['ir.config_parameter'].sudo()
+if IrConfigParameter.get_param('woodoo.auto_sync', False):
+    sync_service = env['woodoo.sync.service'].search([('state', '=', 'idle')], limit=1)
+    if sync_service:
+        sync_service.sync_all()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="False"/>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <!-- System Parameters with default values -->
+    <record id="woodoo_default_sync_customers" model="ir.config_parameter">
+        <field name="key">woodoo.sync_customers</field>
+        <field name="value">True</field>
+    </record>
+
+    <record id="woodoo_default_sync_orders" model="ir.config_parameter">
+        <field name="key">woodoo.sync_orders</field>
+        <field name="value">True</field>
+    </record>
+
+    <record id="woodoo_default_sync_products" model="ir.config_parameter">
+        <field name="key">woodoo.sync_products</field>
+        <field name="value">False</field>
+    </record>
+
+    <record id="woodoo_default_auto_sync" model="ir.config_parameter">
+        <field name="key">woodoo.auto_sync</field>
+        <field name="value">False</field>
+    </record>
+
+    <record id="woodoo_default_sync_interval" model="ir.config_parameter">
+        <field name="key">woodoo.sync_interval</field>
+        <field name="value">60</field>
+    </record>
+</odoo>

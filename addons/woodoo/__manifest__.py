@@ -1,25 +1,59 @@
 {
     'name': 'WooDoo',
-    'version': '18.0.20250805.3',
+    'version': '18.0.20250818.1',
     'summary': 'WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.',
-    'description': """
-WooCommerce Connector
-======================
-- Sync products and product images
-- Sync customers
-- Sync sales orders
-- Continuous update between WooCommerce and Odoo
-    """,
-    'category': 'WooDoo',
+    'category': 'Sales',
     'author': 'Harkály Gergő',
     'maintainer': 'Harkály Gergő',
     'company': 'brandcom.',
-    'website': 'https://www.harkalygergo.hu',
+    'website': 'https://github.com/harkalygergo/WooDoo',
     'license': 'LGPL-3',
-    'depends': ['base'],
     'data': [
         'views/hello_world_template.xml',
+        'security/ir.model.access.csv',
+        'views/res_config_settings_views.xml',
+        'views/woodoo_sync_views.xml',
+        'data/woodoo_data.xml',
     ],
+    'depends': [
+        'base',
+        'sale',
+        'stock',
+        'account',
+        'contacts',
+        'product',
+    ],
+    'demo': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'description': """
+WooDoo - WooCommerce Integration
+================================
+
+This module provides seamless synchronization between WordPress/WooCommerce webshop and Odoo ERP.
+
+Features:
+---------
+* Synchronize customers between WooCommerce and Odoo
+* Sync orders from WooCommerce to Odoo
+* Product synchronization
+* Real-time or scheduled synchronization
+* Configurable connection parameters
+
+Requirements:
+-------------
+* WordPress with WooCommerce plugin
+* WooCommerce REST API enabled
+* Valid API credentials
+
+Configuration:
+--------------
+Go to Settings > Technical > Parameters > System Parameters to configure:
+* WordPress URL
+* WooCommerce API Consumer Key
+* WooCommerce API Consumer Secret
+    """,
     #'depends': [
     #    'base',
     #    'sale',
@@ -45,7 +79,4 @@ WooCommerce Connector
      #       'woo_connector/static/src/css/woo_connector_frontend.css',
      #   ],
     #},
-    'installable': True,
-    'application': True,
-    'auto_install': False,
 }
