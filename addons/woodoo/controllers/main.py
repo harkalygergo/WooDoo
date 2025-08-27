@@ -1,5 +1,6 @@
 from odoo import http
 
+
 class HelloWorld(http.Controller):
     # This route makes the 'hello' method accessible at '/hello'
     @http.route('/hello', type='http', auth='public', website=True)
