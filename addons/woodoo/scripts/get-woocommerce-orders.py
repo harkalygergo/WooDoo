@@ -1,11 +1,13 @@
+import json
+from pprint import pprint
+
 from woocommerce import API
 import urllib3
 import os
 from dotenv import load_dotenv
 
 # use config/.env to load environment variables
-load_dotenv(dotenv_path="config/.env")
-
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../../../config/.env'))
 # SSL warning elnyomása
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -31,7 +33,7 @@ try:
         orders = response.json()
         if isinstance(orders, list):
             for order in orders:
-                print(f"Order ID: {order['id']} - Status: {order['status']} - Total: {order['total']}")
+                pprint(order)
         else:
             print("Unexpected response:", orders)
 except Exception as e:

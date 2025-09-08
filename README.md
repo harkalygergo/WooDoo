@@ -2,6 +2,15 @@
 
 WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.
 
+## Requirements
+
+- Odoo 12 or Odoo 18
+- WordPress + WooCommerce webshop
+- WooCommerce API keys (Consumer Key and Consumer Secret)
+- Python 3 with `requests` and `woocommerce` packages installed
+- WooCommerce package: `pip install woocommerce`
+
+
 ## How to use?
 
 ```bash
