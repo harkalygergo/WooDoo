@@ -1,10 +1,10 @@
-import json
 from pprint import pprint
-
-from woocommerce import API
-import urllib3
-import os
 from dotenv import load_dotenv
+from woocommerce import API
+import sys
+import os
+import urllib3
+sys.path.append(os.path.dirname(__file__))
 
 # use config/.env to load environment variables
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../../../config/.env'))
