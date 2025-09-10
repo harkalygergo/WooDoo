@@ -21,3 +21,26 @@ class Orders(http.Controller):
                 return response.json()
         except Exception as e:
             print("Error:", e)
+
+    # from addons.woodoo.controllers.woo.order import Orders
+    # Orders.create(self, created_date, 'WC-gergo-8755')
+    def create(self, createdAt, name):
+        try:
+            env = api.Environment(http.request.cr, http.request.uid, {})
+            #order_time = datetime.now()
+            #order_name = f"WOODOOgergo-{order_time.strftime('%Y%m%d%H%M%S')}"
+            partner = env['res.partner'].search([], limit=1)
+            product = env['product.product'].search([], limit=1)
+            order_line = [(0, 0, {
+                'product_id': product.id,
+                'product_uom_qty': 1,
+            })]
+            order = env['sale.order'].create({
+                'name': name,
+                #'created_date': createdAt,
+                'partner_id': partner.id,
+                'order_line': order_line,
+            })
+            return print(f"Created Sale Order: {order.name}")
+        except Exception as e:
+            print("Error:", e)
