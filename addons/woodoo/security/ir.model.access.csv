@@ -1,3 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_woocommerce_sync_admin,woocommerce.sync.admin,model_woocommerce_sync,base.group_system,1,1,1,1
-access_woocommerce_sync_user,woocommerce.sync.user,model_woocommerce_sync,base.group_user,1,0,0,0
