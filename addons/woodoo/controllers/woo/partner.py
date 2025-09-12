@@ -9,7 +9,7 @@ class Partner():
         if partner:
             return partner.id
         else:
-            self.create(env, billing)
+            Partner.create(self, env, billing)
 
     def create(self, env, billing):
         # create new partner

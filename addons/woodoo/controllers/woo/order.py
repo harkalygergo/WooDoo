@@ -2,6 +2,7 @@ import json
 from odoo import http, api
 from addons.woodoo.controllers.woo.api import WooAPI
 from addons.woodoo.controllers.woo.partner import Partner
+from addons.woodoo.controllers.woo.product import Product
 
 
 class Orders(http.Controller):
@@ -20,13 +21,12 @@ class Orders(http.Controller):
         try:
             for order in orders:
                 created_date = order.get('date_created')
-                name = order.get('number')
-                self.create(order, created_date, f"WC--{name}")
+                name = order.get('id')
+                self.create(order, created_date, f"WOO-{name}")
             return True
         except Exception as e:
             print("Error:", e)
             return False
-
 
     def get(self):
         try:
@@ -39,8 +39,6 @@ class Orders(http.Controller):
         except Exception as e:
             print("Error:", e)
 
-    # from addons.woodoo.controllers.woo.order import Orders
-    # Orders.create(self, created_date, 'WC-gergo-8755')
     def create(self, order, createdAt, name):
         try:
             orderBilling = order.get('billing')
@@ -51,17 +49,21 @@ class Orders(http.Controller):
             partnerId = Partner.find_by_email(self, orderBilling, orderBillingEmail)
             if not partnerId:
                 return print("No partner found for email:", orderBillingEmail)
-            # create sale order
-
             env = api.Environment(http.request.cr, http.request.uid, {})
             #order_time = datetime.now()
             #order_name = f"WOODOOgergo-{order_time.strftime('%Y%m%d%H%M%S')}"
-            partner = env['res.partner'].search([], limit=1)
-            product = env['product.product'].search([], limit=1)
-            order_line = [(0, 0, {
-                'product_id': product.id,
-                'product_uom_qty': 1,
-            })]
+            #product = env['product.product'].search([], limit=1)
+
+            # loop through order.line_items and check if product exists by SKU, if not create it
+            order_line = []
+            for item in order.get('line_items', []):
+                sku = item.get('sku')
+                product = Product.find_by_sku(self, sku, item)
+                order_line = [(0, 0, {
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                })]
+
             order = env['sale.order'].create({
                 'name': name,
                 #'created_date': createdAt,
