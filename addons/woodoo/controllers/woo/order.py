@@ -1,4 +1,6 @@
 import json
+import os
+
 from odoo import http, api
 from addons.woodoo.controllers.woo.api import WooAPI
 from addons.woodoo.controllers.woo.partner import Partner
@@ -8,7 +10,6 @@ from addons.woodoo.controllers.woo.product import Product
 class Orders(http.Controller):
     @http.route('/woodoo/woo/orders/show', auth='public')
     def show(self):
-
         orders = self.get()
         self.sync(orders)
 
@@ -20,9 +21,7 @@ class Orders(http.Controller):
     def sync(self, orders):
         try:
             for order in orders:
-                created_date = order.get('date_created')
-                name = order.get('id')
-                self.create(order, created_date, f"WOO-{name}")
+                self.create(order)
             return True
         except Exception as e:
             print("Error:", e)
@@ -35,25 +34,25 @@ class Orders(http.Controller):
             if response.status_code != 200:
                 return print("API error:", response.status_code, response.text)
             else:
-                return response.json()
+                orders = response.json()
+                if isinstance(orders, list):
+                    return orders
+                else:
+                    print("Unexpected response:", orders)
         except Exception as e:
             print("Error:", e)
 
-    def create(self, order, createdAt, name):
+    def create(self, order):
         try:
             orderBilling = order.get('billing')
             orderBillingEmail = order.get('billing').get("email")
             if not orderBillingEmail:
-                return print("No billing email found for order:", name)
+                return print("No billing email found for order:", order.get("id"))
             # find partner by email
             partnerId = Partner.find_by_email(self, orderBilling, orderBillingEmail)
             if not partnerId:
                 return print("No partner found for email:", orderBillingEmail)
             env = api.Environment(http.request.cr, http.request.uid, {})
-            #order_time = datetime.now()
-            #order_name = f"WOODOOgergo-{order_time.strftime('%Y%m%d%H%M%S')}"
-            #product = env['product.product'].search([], limit=1)
-
             # loop through order.line_items and check if product exists by SKU, if not create it
             order_line = []
             for item in order.get('line_items', []):
@@ -65,19 +64,17 @@ class Orders(http.Controller):
                 })]
 
             order = env['sale.order'].create({
-                'name': name,
+                'name': f"WOO-{os.getenv('WP_URL')}-{order.get('id')}",
                 #'created_date': createdAt,
                 'partner_id': partnerId,
                 'order_line': order_line,
                 'currency_id': env['res.currency'].search([('name', '=', order.get("currency"))], limit=1).id,
                 'state': self.switchOrderStatus(order.get("status", "draft")),
-                # set odoo order total as order.get("total")
                 'amount_total': float(order.get("total", 0.0)),
             })
             return print(f"Created Sale Order: {order.name}")
         except Exception as e:
             print("Error:", e)
-
 
     def switchOrderStatus(self, orderStatus):
         statusMapping = {
