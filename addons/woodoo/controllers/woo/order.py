@@ -6,10 +6,26 @@ from addons.woodoo.controllers.woo.api import WooAPI
 class Orders(http.Controller):
     @http.route('/woodoo/woo/orders/show', auth='public')
     def show(self):
+
+        orders = self.get()
+        self.sync(orders)
+
         return http.Response(
-            json.dumps(self.get()),
+            json.dumps(orders),
             content_type='application/json; charset=utf-8'
         )
+
+    def sync(self, orders):
+        try:
+            for order in orders:
+                created_date = order.get('date_created')
+                name = order.get('number')
+                self.create(order, created_date, f"WC--{name}")
+            return True
+        except Exception as e:
+            print("Error:", e)
+            return False
+
 
     def get(self):
         try:
@@ -24,7 +40,7 @@ class Orders(http.Controller):
 
     # from addons.woodoo.controllers.woo.order import Orders
     # Orders.create(self, created_date, 'WC-gergo-8755')
-    def create(self, createdAt, name):
+    def create(self, order, createdAt, name):
         try:
             env = api.Environment(http.request.cr, http.request.uid, {})
             #order_time = datetime.now()
@@ -40,7 +56,24 @@ class Orders(http.Controller):
                 #'created_date': createdAt,
                 'partner_id': partner.id,
                 'order_line': order_line,
+                'currency_id': env['res.currency'].search([('name', '=', order.get("currency"))], limit=1).id,
+                'state': self.switchOrderStatus(order.get("status", "draft")),
+                # set odoo order total as order.get("total")
+                'amount_total': float(order.get("total", 0.0)),
             })
             return print(f"Created Sale Order: {order.name}")
         except Exception as e:
             print("Error:", e)
+
+
+    def switchOrderStatus(self, orderStatus):
+        statusMapping = {
+            'pending': 'draft',
+            'processing': 'sale',
+            'on-hold': 'sale',
+            'completed': 'sale',
+            'cancelled': 'cancel',
+            'refunded': 'cancel',
+            'failed': 'cancel',
+        }
+        return statusMapping.get(orderStatus, 'draft')
