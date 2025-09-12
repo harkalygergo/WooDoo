@@ -1,6 +1,7 @@
 import json
 from odoo import http, api
 from addons.woodoo.controllers.woo.api import WooAPI
+from addons.woodoo.controllers.woo.partner import Partner
 
 
 class Orders(http.Controller):
@@ -42,6 +43,16 @@ class Orders(http.Controller):
     # Orders.create(self, created_date, 'WC-gergo-8755')
     def create(self, order, createdAt, name):
         try:
+            orderBilling = order.get('billing')
+            orderBillingEmail = order.get('billing').get("email")
+            if not orderBillingEmail:
+                return print("No billing email found for order:", name)
+            # find partner by email
+            partnerId = Partner.find_by_email(self, orderBilling, orderBillingEmail)
+            if not partnerId:
+                return print("No partner found for email:", orderBillingEmail)
+            # create sale order
+
             env = api.Environment(http.request.cr, http.request.uid, {})
             #order_time = datetime.now()
             #order_name = f"WOODOOgergo-{order_time.strftime('%Y%m%d%H%M%S')}"
@@ -54,7 +65,7 @@ class Orders(http.Controller):
             order = env['sale.order'].create({
                 'name': name,
                 #'created_date': createdAt,
-                'partner_id': partner.id,
+                'partner_id': partnerId,
                 'order_line': order_line,
                 'currency_id': env['res.currency'].search([('name', '=', order.get("currency"))], limit=1).id,
                 'state': self.switchOrderStatus(order.get("status", "draft")),
