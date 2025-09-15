@@ -14,9 +14,10 @@ class Product():
         try:
             new_product = env['product.product'].create({
                 'name': product_data.get('name', 'Unnamed Product'),
-                'default_code': product_data.get('sku', ''),
+                'default_code': product_data.get('product_id', ''),
                 'list_price': float(product_data.get('price', 0.0)),
                 'type': 'consu' if product_data.get('type') == 'simple' else 'service',
+                'description_sale': str(product_data.get('description', '')),
                 'sale_ok': True,
                 'purchase_ok': True,
             })
