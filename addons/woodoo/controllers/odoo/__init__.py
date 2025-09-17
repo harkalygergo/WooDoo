@@ -1,1 +1,1 @@
-from odoo.addons.woodoo.controllers.odoo.product import ProductTemplate
+#from odoo.addons.woodoo.controllers.odoo.product import ProductTemplate
