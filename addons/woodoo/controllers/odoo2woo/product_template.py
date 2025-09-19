@@ -17,8 +17,9 @@ class ProductTemplate(models.Model):
                     data = {
                         "id": default_code,
                         "name": str(vals.get('name', record.name)),
-                        "regular_price": str(vals.get('list_price', record.standard_price)),
-                        "short_description": str(vals.get('description', record.description))
+                        "regular_price": str(vals.get('list_price', record.list_price)),
+                        "short_description": str(vals.get('description', record.description)),
+                        "stock_quantity": str(vals.get('qty_available', record.qty_available))
                     }
                     Logger.log(json.dumps(data, indent=4))  # Pretty print the data being sent
 
