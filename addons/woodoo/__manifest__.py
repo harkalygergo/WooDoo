@@ -1,6 +1,6 @@
 {
     'name': 'WooDoo',
-    'version': '18.0.20250919.3',
+    'version': '18.0.20250919.4',
     'summary': 'WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.',
     'category': 'Sales',
     'author': 'Harkály Gergő',
@@ -10,13 +10,7 @@
     'license': 'LGPL-3',
     'data': [
         #'security/ir.model.access.csv',
-        #'views/product_change_log_views.xml',
-        #'security/ir.model.access.csv',  # Add this if you have security rules
         #'data/cron.xml',
-        'views/hello_world_template.xml',
-        #'views/res_config_settings_views.xml',
-        #'views/woodoo_sync_views.xml',
-        #'data/woodoo_data.xml',
     ],
     'depends': [
         'base',
@@ -26,6 +20,7 @@
         'account',
         'contacts',
         'product',
+        'website_sale',
     ],
     'demo': [],
     'installable': True,
@@ -58,22 +53,6 @@ Go to Settings > Technical > Parameters > System Parameters to configure:
 * WooCommerce API Consumer Key
 * WooCommerce API Consumer Secret
     """,
-    #'depends': [
-    #    'base',
-    #    'sale',
-    #    'stock',
-    #    'product',
-    #    'website_sale',
-    #],
-    #'data': [
-        #'security/ir.model.access.csv',
-        #'views/woo_connector_menus.xml',
-        #'views/woo_product_view.xml',
-        #'views/woo_order_view.xml',
-        #'views/woo_connector_menus.xml',
-        #'views/hello_template.xml',
-        # Add more XML views if you have them
-    #],
     #'assets': {
      #   'web.assets_backend': [
      #       'woo_connector/static/src/js/woo_connector.js',
