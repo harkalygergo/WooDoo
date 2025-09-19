@@ -9,50 +9,50 @@
     <thead>
         <tr>
             <th>Adattípus</th>
-            <th>WooCommerce → Odoo</th>
-            <th>Odoo → WooCommerce</th>
+            <th>Odoo &raquo; WooCommerce</th>
+            <th>WooCommerce &raquo; Odoo</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Termékek (kép nélkül)</td>
-            <td>Nem</td>
             <td>Igen (M)</td>
+            <td>Nem</td>
         </tr>
         <tr>
             <td>Termékváltozatok (k.n.)</td>
-            <td>Nem</td>
             <td>Igen (M)</td>
+            <td>Nem</td>
         </tr>
         <tr>
             <td>Készlet</td>
-            <td>Nem</td>
             <td>Igen (M)</td>
+            <td>Nem</td>
         </tr>
         <tr>
             <td>Rendelések</td>
-            <td>Igen (M)</td>
             <td>Nem</td>
+            <td>Igen (M)</td>
         </tr>
         <tr>
             <td>Ügyfelek</td>
-            <td>Igen</td>
             <td>Nem</td>
+            <td>Igen</td>
         </tr>
         <tr>
             <td>Számlák</td>
-            <td>Nem</td>
             <td>Igen</td>
+            <td>Nem</td>
         </tr>
         <tr>
             <td>Szállítási adatok</td>
-            <td>Igen</td>
             <td>Nem</td>
+            <td>Igen</td>
         </tr>
         <tr>
             <td>Árlista / árak</td>
-            <td>Kérdéses</td>
             <td>Igen</td>
+            <td>Kérdéses</td>
         </tr>
         <tr>
             <td>Kuponok, kedvezmények</td>
@@ -61,31 +61,30 @@
         </tr>
         <tr>
             <td>Adók</td>
-            <td>Nem</td>
             <td>Igen</td>
+            <td>Nem</td>
         </tr>
     </tbody>
 </table>
 
 <h2>Szinkronizáció gyakorisága</h2>
-
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
             <th>Forrás</th>
-            <th>Módszer</th>
-            <th>Időzítés</th>
+            <th>Odoo</th>
+            <th>WooCommerce</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Odoo</td>
-            <td>Push (azonnali)</td>
-            <td>eseményalapú</td>
+            <td>Módszer</td>
+            <td>push (azonnali)</td>
+            <td>webhook vagy polling</td>
         </tr>
         <tr>
-            <td>WooCommerce</td>
-            <td>Webhook vagy polling</td>
+            <td>Időzítés</td>
+            <td>eseményalapú</td>
             <td>webhook: azonnali<br>polling: 15 perc</td>
         </tr>
     </tbody>
