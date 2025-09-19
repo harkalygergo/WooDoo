@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     def write(self, vals):
+        productTemplate = super(ProductTemplate, self).create(vals)
 
         for record in self:
             default_code = record.default_code if record.default_code else ""
@@ -32,4 +33,4 @@ class ProductTemplate(models.Model):
                 except Exception as e:
                     Logger.log("Error:" + json.dumps(e))
 
-        return super(ProductTemplate, self).write(vals)
+        return productTemplate
