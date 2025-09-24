@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     def write(self, vals):
-        productTemplate = super(ProductTemplate, self).create(vals)
+        productTemplate = super(ProductTemplate, self).write(vals)
 
         for record in self:
             default_code = record.default_code if record.default_code else ""
