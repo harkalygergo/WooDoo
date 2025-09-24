@@ -1,6 +1,6 @@
 {
     'name': 'WooDoo',
-    'version': '18.0.20250924.3',
+    'version': '18.0.20250924.4',
     'summary': 'WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.',
     'category': 'Sales',
     'author': 'Harkály Gergő',

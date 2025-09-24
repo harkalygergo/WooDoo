@@ -1,4 +1,7 @@
+import inspect
 import json
+from pprint import pprint
+
 from odoo import models, api
 from addons.woodoo.controllers.logger import Logger
 from addons.woodoo.controllers.woo.api import WooAPI
@@ -15,10 +18,15 @@ class ProductTemplate(models.Model):
             # check if default_code is not empty
             if default_code:
                 try:
+                    Logger.log(f"Updating product {default_code} with vals: {json.dumps(vals, indent=4)}")
+                    # log all data of record and vals
+                    Logger.log("RECORD:" + json.dumps(record.read()[0], indent=4, default=str, ensure_ascii=False))
+
                     data = {
                         "id": default_code,
                         "name": str(vals.get('name', record.name)),
                         "regular_price": str(vals.get('list_price', record.list_price)),
+                        "description": str(vals.get('description_ecommerce', record.description_ecommerce)),
                         "short_description": str(vals.get('description', record.description)),
                         "stock_quantity": str(vals.get('qty_available', record.qty_available))
                     }
