@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+woodoo.access_invoice_logger_cron,access_invoice_logger_cron,woodoo.model_invoice_logger_cron,base.group_user,1,0,0,0
+access_cron_demo,cron.demo,model_cron_demo,base.group_user,1,1,1,1

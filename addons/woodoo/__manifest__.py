@@ -1,6 +1,6 @@
 {
     'name': 'WooDoo',
-    'version': '18.0.20250924.4',
+    'version': '18.0.20250924.5',
     'summary': 'WooDoo is an Odoo ERP module that syncs data between Odoo and WordPress+WooCommerce webshop.',
     'category': 'Sales',
     'author': 'Harkály Gergő',
@@ -9,6 +9,11 @@
     'website': 'https://github.com/harkalygergo/WooDoo',
     'license': 'LGPL-3',
     'data': [
+        'security/ir.model.access.csv',
+        # data files first, followed by security files, and then your view files.
+        "data/ir_cron.xml",
+        #"data/cronjobs.xml",
+        #'views/res_config_settings_view.xml',
         #'security/ir.model.access.csv',
         #'data/cron.xml',
     ],
