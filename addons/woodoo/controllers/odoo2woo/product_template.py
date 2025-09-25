@@ -1,6 +1,4 @@
-import inspect
 import json
-from pprint import pprint
 
 from odoo import models, api
 from addons.woodoo.controllers.logger import Logger
