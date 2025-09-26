@@ -18,8 +18,8 @@ class CronDemo(models.Model):
         pprint("=== WooDoo cron get_new_orders() start ===")
         try:
             pprint("=== WooDoo cron get_new_orders() try ===")
-            orders = self.get(self)
-            self.sync(orders)
+            #orders = self.get(self)
+            #self.sync(orders)
             pprint("=== WooDoo cron get_new_orders() ready ===")
             return True
         except Exception as e:
