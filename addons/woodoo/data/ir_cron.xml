@@ -6,7 +6,7 @@
             <field name="model_id" ref="woodoo.model_cron_demo"/>
             <field name="state">code</field>
             <field name="code">model.run_demo_cron(max_orders=10)</field>
-            <field name="interval_number">5</field>
+            <field name="interval_number">15</field>
             <field name="interval_type">minutes</field>
             <field name="priority">6</field>
             <field name="active" eval="True"/>
